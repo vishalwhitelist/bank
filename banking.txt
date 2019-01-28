@@ -1,0 +1,84 @@
+using System;
+
+namespace ConsoleApplication2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            bank b = new bank();
+            int ch;
+            do
+            {
+                Console.WriteLine("enter your choice\n 1.balance\n 2.deposit\n 3.withdrawal\n 4.exit\n");
+
+                ch = int.Parse(Console.ReadLine());
+                switch (ch)
+                {
+                    case 1:
+                        b.checkBalance();
+                        break;
+                    case 2:
+                        b.deposit();
+                        break;
+                    case 3:
+                        b.withdrawal();
+                        break;
+                    default:
+                        System.Environment.Exit(0);
+                        break;
+
+                }
+            } while (ch != 0);
+
+            Console.ReadKey();
+        }
+    }
+}
+---------------
+using System;
+
+namespace ConsoleApplication2
+{
+    class bank
+    {
+
+        public float balAmounnt;
+        public string accNumber;
+        public float amount;
+        public bank()
+        {
+            balAmounnt = 5000;
+           
+    }
+        public void checkBalance()
+        {
+            Console.WriteLine("Balance=" + balAmounnt);
+        }
+        public void deposit()
+        {
+            Console.WriteLine("enter amount for deposit");
+            amount = float.Parse(Console.ReadLine());
+            balAmounnt += amount;
+
+        }
+        public void withdrawal()
+        {
+
+            float minbal;
+            Console.WriteLine("enter amount for withdrwal");
+            amount = float.Parse(Console.ReadLine());
+            minbal = balAmounnt - 5000;
+            if(amount<minbal)
+            {
+                balAmounnt -= amount;
+
+            }
+            else if(amount > minbal)
+            {
+                Console.WriteLine("not sufficient balance");
+            }
+        }
+    }
+
+}
